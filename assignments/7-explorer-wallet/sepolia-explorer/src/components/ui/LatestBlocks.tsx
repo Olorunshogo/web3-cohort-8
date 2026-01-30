@@ -7,14 +7,14 @@ import ErrorMessage from './ErrorMessage';
 import type { RpcBlock } from '../../types/types';
 
 export default function LatestBlocks(): JSX.Element {
-  const { data, loading, error } = useRecentBlocks(10);
+  const { data, isLoading, error } = useRecentBlocks(10);
 
-  if (loading) return <LoadingSpinner />;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <ErrorMessage message={error} />;
 
   return (
-    <div className="bg-sepolia-dark p-4 rounded-lg">
-      <h2 className="text-lg font-bold mb-2">Latest Blocks</h2>
+    <div className="p-4 rounded-lg bg-sepolia-dark">
+      <h2 className="mb-2 text-lg font-bold">Latest Blocks</h2>
       <table className="w-full text-sm">
         <tbody>
           {data?.map((block: RpcBlock) => (
@@ -34,7 +34,7 @@ export default function LatestBlocks(): JSX.Element {
           ))}
         </tbody>
       </table>
-      <Link to="/blocks" className="text-sepolia-blue mt-2 block">
+      <Link to="/blocks" className="block mt-2 text-sepolia-blue">
         View All Blocks →
       </Link>
     </div>

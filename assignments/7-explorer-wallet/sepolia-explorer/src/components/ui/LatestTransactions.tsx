@@ -7,10 +7,10 @@ import ErrorMessage from './ErrorMessage';
 import type { RpcTransaction } from '../../types/types';
 
 export default function LatestTransactions(): JSX.Element {
-  const { data, loading, error } = useRecentTransactions(10);
+  const { data, isLoading, error } = useRecentTransactions(10);
 
-  if (loading) return <LoadingSpinner />;
-  if (error) return <ErrorMessage message={error} />;
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <ErrorMessage message={error.message} />;
 
   return (
     <div className="p-4 rounded-lg bg-sepolia-dark">
@@ -31,6 +31,7 @@ export default function LatestTransactions(): JSX.Element {
           ))}
         </tbody>
       </table>
+      
       <Link to="/txs" className="block mt-2 text-sepolia-blue">
         View All Transactions →
       </Link>
