@@ -1,10 +1,9 @@
 import LatestBlocks from 'src/components/ui/LatestBlocks';
 import LatestTransactions from 'src/components/ui/LatestTransactions';
 import { useEthPrice, useGasPrice } from 'src/hooks/useSepolia';
-import { weiToGwei, weiToEth } from 'src/utils/formatters';
+import { weiToGwei, weiToEth } from '~/src/services/formatters';
 import LoadingSpinner from 'src/components/ui/LoadingSpinner';
 import ErrorMessage from 'src/components/ui/ErrorMessage';
-
 
 export default function HomePage() {
   const {

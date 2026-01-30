@@ -1,6 +1,11 @@
 import { useParams, Link } from 'react-router';
 import { useTransaction } from '../../src/hooks/useSepolia';
-import { shortenHash, weiToGwei, weiToEth, hexToNumber } from 'src/utils/formatters';
+import {
+  shortenHash,
+  weiToGwei,
+  weiToEth,
+  hexToNumber,
+} from '~/src/services/formatters';
 import LoadingSpinner from '../../src/components/ui/LoadingSpinner';
 import ErrorMessage from '../../src/components/ui/ErrorMessage';
 

@@ -4,7 +4,7 @@ import {
   shortenHash,
   formatTimestamp,
   hexToNumber,
-} from '../../utils/formatters';
+} from '../../services/formatters';
 import LoadingSpinner from './LoadingSpinner';
 import ErrorMessage from './ErrorMessage';
 import type { RpcBlock } from '../../types/types';

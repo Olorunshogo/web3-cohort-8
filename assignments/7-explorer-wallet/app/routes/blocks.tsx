@@ -1,5 +1,5 @@
 import type { Route } from './+types/home';
-import BlockPage from '~/blocks/BlocksPage';
+import BlocksPage from '../blocks/BlocksPage';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -9,5 +9,5 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function BlocksRoute() {
-  return <BlockPage />;
+  return <BlocksPage />;
 }

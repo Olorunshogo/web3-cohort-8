@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { useRecentTransactions } from '../../hooks/useSepolia';
-import { shortenHash, weiToEth } from '../../utils/formatters';
+import { shortenHash, weiToEth } from '../../services/formatters';
 import LoadingSpinner from './LoadingSpinner';
 import ErrorMessage from './ErrorMessage';
 import type { RpcTransaction } from '../../types/types';

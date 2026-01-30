@@ -1,5 +1,5 @@
 import type { Route } from './+types/home';
-import TxDetail from '~/transactions/TxDetail';
+import TxDetail from '../transactions/TxDetail';
 
 export function meta({ params }: Route.MetaArgs) {
   return [

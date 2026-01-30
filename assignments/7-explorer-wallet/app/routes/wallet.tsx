@@ -1,5 +1,5 @@
 import type { Route } from './+types/home';
-import WalletPage from '~/wallet/WalletPage';
+import WalletPage from '../wallet/WalletPage';
 
 export function meta({}: Route.MetaArgs) {
   return [

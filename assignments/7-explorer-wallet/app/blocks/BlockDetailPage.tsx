@@ -5,7 +5,7 @@ import {
   formatTimestamp,
   hexToNumber,
   weiToEth,
-} from '../../src/utils/formatters';
+} from '../../src/services/formatters';
 import LoadingSpinner from '../../src/components/ui/LoadingSpinner';
 import ErrorMessage from '../../src/components/ui/ErrorMessage';
 import type { RpcTransaction } from '../../src/types/types';

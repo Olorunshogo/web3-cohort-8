@@ -1,5 +1,5 @@
 import type { Route } from '../+types/root';
-import BlockDetailPage from '~/blocks/BlockDetailPage';
+import BlockDetailPage from '../blocks/BlockDetailPage';
 
 export function meta({ params }: Route.MetaArgs) {
   return [
