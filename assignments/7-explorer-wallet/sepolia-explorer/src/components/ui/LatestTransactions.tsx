@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import type { JSX } from 'react';
 import { useRecentTransactions } from '../../hooks/useSepolia';
 import { shortenHash, weiToEth } from '../../utils/formatters';
 import LoadingSpinner from './LoadingSpinner';
@@ -12,8 +13,8 @@ export default function LatestTransactions(): JSX.Element {
   if (error) return <ErrorMessage message={error} />;
 
   return (
-    <div className="bg-sepolia-dark p-4 rounded-lg">
-      <h2 className="text-lg font-bold mb-2">Latest Transactions</h2>
+    <div className="p-4 rounded-lg bg-sepolia-dark">
+      <h2 className="mb-2 text-lg font-bold">Latest Transactions</h2>
       <table className="w-full text-sm">
         <tbody>
           {data?.map((tx: RpcTransaction) => (
@@ -30,7 +31,7 @@ export default function LatestTransactions(): JSX.Element {
           ))}
         </tbody>
       </table>
-      <Link to="/txs" className="text-sepolia-blue mt-2 block">
+      <Link to="/txs" className="block mt-2 text-sepolia-blue">
         View All Transactions →
       </Link>
     </div>

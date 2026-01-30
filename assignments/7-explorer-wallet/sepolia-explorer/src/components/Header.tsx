@@ -3,7 +3,9 @@ import { NavLink } from "react-router-dom";
 
 const Header: React.FC = () => {
   return (
-    <header className="header bg-red-900">
+    <header className="flex items-center justify-between bg-red-900 header">
+
+      <img src="" alt="Sepolia Wallet Logo" />
 
       <nav>
         <NavLink to="/" end>

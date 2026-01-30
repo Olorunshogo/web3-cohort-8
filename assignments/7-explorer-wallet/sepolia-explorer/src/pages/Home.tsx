@@ -1,6 +1,6 @@
 import { useState, useEffect, type JSX } from 'react';
-import LatestBlocks from './LatestBlocks';
-import LatestTransactions from '../components/LatestTransaction';
+import LatestBlocks from '../components/ui/LatestBlocks';
+import LatestTransactions from '../components/ui/LatestTransactions';
 import { useGasPrice } from '../hooks/useSepolia';
 import { weiToEth } from '../utils/formatters';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
@@ -15,12 +15,12 @@ interface EthPriceResponse {
 export default function Home(): JSX.Element {
   const {
     data: gasPrice,
-    loading: gasLoading,
-    error: gasError,
+    loading: gasPriceLoading,
+    error: gasPriceError,
   } = useGasPrice();
-  const [price, setPrice] = useState<number | null>(null);
-  const [priceLoading, setPriceLoading] = useState<boolean>(true);
-  const [priceError, setPriceError] = useState<string | null>(null);
+  const [ethPrice, setPrice] = useState<number | null>(null);
+  const [ethPriceLoading, setPriceLoading] = useState<boolean>(true);
+  const [ethPriceError, setPriceError] = useState<string | null>(null);
 
   useEffect(() => {
     fetch(
@@ -35,27 +35,30 @@ export default function Home(): JSX.Element {
   return (
     <div className="container p-4 mx-auto">
       <div className="grid grid-cols-1 gap-4 mb-4 md:grid-cols-3">
+        {/* Eth Price */}
         <div className="p-4 rounded-lg bg-sepolia-dark">
           <h3 className="font-bold">ETH Price</h3>
-          {priceLoading ? (
+          {ethPriceLoading ? (
             <LoadingSpinner />
-          ) : priceError ? (
-            <ErrorMessage message={priceError} />
+          ) : ethPriceError ? (
+            <ErrorMessage message={ethPriceError} />
           ) : (
-            <p>${price?.toFixed(2)}</p>
+            <p>${ethPrice?.toFixed(2)}</p>
           )}
         </div>
+        {/* Gas Price */}
         <div className="p-4 rounded-lg bg-sepolia-dark">
           <h3 className="font-bold">Gas Price</h3>
-          {gasLoading ? (
+          {gasPriceLoading ? (
             <LoadingSpinner />
-          ) : gasError ? (
-            <ErrorMessage message={gasError} />
+          ) : gasPriceError ? (
+            <ErrorMessage message={gasPriceError} />
           ) : (
             <p>{weiToEth(gasPrice || '0')} Gwei</p>
           )}
         </div>
       </div>
+
       <div className="grid grid-cols-1 p-4 ga lg:grid-cols-2">
         <LatestBlocks />
         <LatestTransactions />

@@ -22,11 +22,11 @@ export default function BlockDetail(): JSX.Element {
   if (!data) return <ErrorMessage message="Block not found" />;
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">
+    <div className="container p-4 mx-auto">
+      <h1 className="mb-4 text-2xl font-bold">
         Block #{hexToNumber(data.number)}
       </h1>
-      <div className="bg-sepolia-dark p-4 rounded-lg mb-4">
+      <div className="p-4 mb-4 rounded-lg bg-sepolia-dark">
         <p>
           <strong>Hash:</strong> {data.hash}
         </p>
@@ -44,21 +44,21 @@ export default function BlockDetail(): JSX.Element {
           {weiToEth(data.gasLimit)}
         </p>
       </div>
-      <h2 className="text-lg font-bold mb-2">Transactions</h2>
-      <table className="w-full text-sm bg-sepolia-dark rounded-lg">
+      <h2 className="mb-2 text-lg font-bold">Transactions</h2>
+      <table className="w-full text-sm rounded-lg bg-sepolia-dark">
         <tbody>
           {(data.transactions as RpcTransaction[]).map((tx: RpcTransaction) => (
             <tr key={tx.hash} className="border-b border-gray-700">
-              <td className="py-2 px-4">
+              <td className="px-4 py-2">
                 <Link to={`/tx/${tx.hash}`} className="text-sepolia-blue">
                   {shortenHash(tx.hash)}
                 </Link>
               </td>
-              <td className="py-2 px-4">From {shortenHash(tx.from)}</td>
-              <td className="py-2 px-4">
-                To {tx.to ? shortenHash(tx.to) : 'Contract'}
+              <td className="px-4 py-2">From: {shortenHash(tx.from)}</td>
+              <td className="px-4 py-2">
+                To: {tx.to ? shortenHash(tx.to) : 'Contract'}
               </td>
-              <td className="py-2 px-4">{weiToEth(tx.value)} ETH</td>
+              <td className="px-4 py-2">{weiToEth(tx.value)} ETH</td>
             </tr>
           ))}
         </tbody>

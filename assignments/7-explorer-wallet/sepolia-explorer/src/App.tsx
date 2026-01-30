@@ -8,18 +8,17 @@ import TxDetail from './pages/TxDetail';
 export default function App(): JSX.Element {
   return (
     <BrowserRouter>
-      <header className="bg-sepolia-darker p-4 shadow-md">
-        <nav className="container mx-auto flex items-center gap-6">
-          <Link to="/" className="text-sepolia-blue font-bold text-xl">
+      <header className="p-4 shadow-md bg-sepolia-darker">
+        <nav className="container flex items-center gap-6 mx-auto">
+          <Link to="/" className="text-xl font-bold text-sepolia-blue">
             Sepolia Explorer
-          </Link>
-          <Link to="/" className="text-gray-300 hover:text-sepolia-blue">
-            Home
           </Link>
           <Link to="/blocks" className="text-gray-300 hover:text-sepolia-blue">
             Blocks
           </Link>
-          {/* Add more nav links as needed */}
+          <Link to="/transactions" className="text-gray-300 hover:text-sepolia-blue">
+            Transactions
+          </Link>
         </nav>
       </header>
       <main className="min-h-screen">
@@ -31,7 +30,7 @@ export default function App(): JSX.Element {
           <Route
             path="/txs"
             element={
-              <div className="container mx-auto p-4">
+              <div className="container p-4 mx-auto">
                 Transactions List (Implement similar to Blocks)
               </div>
             }
@@ -39,7 +38,7 @@ export default function App(): JSX.Element {
           {/* Placeholder */}
         </Routes>
       </main>
-      <footer className="bg-sepolia-darker p-4 mt-8">
+      <footer className="p-4 mt-8 bg-sepolia-darker">
         <div className="container mx-auto text-center text-gray-500">
           © 2026 Sepolia Explorer. Powered by Ethereum JSON-RPC.
         </div>
@@ -47,3 +46,20 @@ export default function App(): JSX.Element {
     </BrowserRouter>
   );
 }
+
+// import React from 'react';
+// import ReactDOM from 'react-dom/client';
+// import App from './App.tsx';
+// import './index.css';
+
+// import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+// const queryClient = new QueryClient();
+
+// ReactDOM.createRoot(document.getElementById('root')!).render(
+//   <React.StrictMode>
+//     <QueryClientProvider client={queryClient}>
+//       <App />
+//     </QueryClientProvider>
+//   </React.StrictMode>
+// );
