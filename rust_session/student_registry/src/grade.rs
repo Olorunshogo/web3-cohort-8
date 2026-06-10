@@ -21,12 +21,11 @@ pub enum Sex {
     Female,
 }
 
-#[allow(dead_code)]
 impl Sex {
-    pub fn to_str(&self) {
+    pub fn as_str(&self) -> &str {
         match self {
-            Sex::Male => println!("male: 👨🏾"),
-            Sex::Female => println!("female: 👧🏾"),
+            Sex::Male => "Male",
+            Sex::Female => "Female",
         }
     }
 }

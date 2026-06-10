@@ -1,10 +1,10 @@
 #[derive(Debug, PartialEq)]
 #[allow(dead_code)]
 pub enum Status {
-    Pending,
-    Ongoing,
-    Completed,
-    Cancel,
+  Pending,
+  Ongoing,
+  Completed,
+  Cancel,
 }
 
 #[derive(Debug)]

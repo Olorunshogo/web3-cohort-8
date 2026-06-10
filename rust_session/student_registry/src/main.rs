@@ -15,10 +15,40 @@ fn main() {
 
     let mut registry = Registry::new();
 
-    registry.add("Kingsman", 20, Sex::Female, Grade::First, 78.5);
-    registry.add("Jigan", 42, Sex::Female, Grade::Second, 64.0);
-    registry.add("Yusrah", 21, Sex::Female, Grade::First, 91.0);
-    registry.add("Testimony", 16, Sex::Female, Grade::Third, 40.5);
+    match registry.add("Kingsman", 20, Sex::Female, Grade::First, 78.5) {
+        Ok(_) => {}
+        Err(e) => println!("Error: {}", e),
+    }
+    match registry.add("Jigan", 42, Sex::Female, Grade::Second, 64.0) {
+        Ok(_) => {}
+        Err(e) => println!("Error: {}", e),
+    }
+    match registry.add("Yusrah", 21, Sex::Female, Grade::First, 91.0) {
+        Ok(_) => {}
+        Err(e) => println!("Error: {}", e),
+    }
+    match registry.add("Testimony", 16, Sex::Female, Grade::Third, 40.5) {
+        Ok(_) => {}
+        Err(e) => println!("Error: {}", e),
+    }
+
+    // invalid add - empty name
+    match registry.add("", 20, Sex::Male, Grade::First, 50.0) {
+        Ok(_) => {}
+        Err(e) => println!("Rejected: {}", e),
+    }
+
+    // invalid add - bad age
+    match registry.add("Ghost", 0, Sex::Male, Grade::First, 50.0) {
+        Ok(_) => {}
+        Err(e) => println!("Rejected: {}", e),
+    }
+
+    // invalid add - score out of range
+    match registry.add("Ghost", 25, Sex::Male, Grade::First, 120.0) {
+        Ok(_) => {}
+        Err(e) => println!("Rejected: {}", e),
+    }
 
     println!("\n All students ");
     registry.list_all();
@@ -26,24 +56,51 @@ fn main() {
     println!("\n Get student ID 2 ");
     registry.get_student_by_id(2);
 
-    println!("\n Update Jigan's age to 23 ");
-    registry.update_age(2, 36);
+    println!("\n Update Jigan's age ");
+    match registry.update_age(2, 36) {
+        Ok(_) => {}
+        Err(e) => println!("Error: {}", e),
+    }
     registry.get_student_by_id(2);
+
+    // invalid age update
+    match registry.update_age(2, 0) {
+        Ok(_) => {}
+        Err(e) => println!("Rejected: {}", e),
+    }
 
     println!("\n Update Jigan's name ");
-    registry.update_name(2, "Jigah".to_string());
+    match registry.update_name(2, "Jigah".to_string()) {
+        Ok(_) => {}
+        Err(e) => println!("Error: {}", e),
+    }
     registry.get_student_by_id(2);
 
+    // invalid name update
+    match registry.update_name(2, "   ".to_string()) {
+        Ok(_) => {}
+        Err(e) => println!("Rejected: {}", e),
+    }
+
     println!("\n Update Kingsman's sex ");
-    registry.update_sex(1, Sex::Male);
+    match registry.update_sex(1, Sex::Male) {
+        Ok(_) => {}
+        Err(e) => println!("Error: {}", e),
+    }
     registry.get_student_by_id(1);
 
-    println!("\n Update kingsman's grade ");
-    registry.update_grade(1, Grade::Second);
+    println!("\n Update Kingsman's grade ");
+    match registry.update_grade(1, Grade::Second) {
+        Ok(_) => {}
+        Err(e) => println!("Error: {}", e),
+    }
     registry.get_student_by_id(1);
 
     println!("\n Delete student ID 3 (Yusrah) ");
-    registry.delete_student(3);
+    match registry.delete_student(3) {
+        Ok(_) => {}
+        Err(e) => println!("Error: {}", e),
+    }
     registry.list_all();
 
     // === Registry with UUID IDs
@@ -51,9 +108,24 @@ fn main() {
 
     let mut uuid_registry = RegistryUUID::new();
 
-    uuid_registry.add("Basongo", 23, Sex::Male, Grade::Second, 72.5);
-    uuid_registry.add("Faith", 19, Sex::Female, Grade::First, 88.0);
-    uuid_registry.add("Mac5", 20, Sex::Male, Grade::Third, 55.0);
+    match uuid_registry.add("Basongo", 23, Sex::Male, Grade::Second, 72.5) {
+        Ok(_) => {}
+        Err(e) => println!("Error: {}", e),
+    }
+    match uuid_registry.add("Faith", 19, Sex::Female, Grade::First, 88.0) {
+        Ok(_) => {}
+        Err(e) => println!("Error: {}", e),
+    }
+    match uuid_registry.add("Mac5", 20, Sex::Male, Grade::Third, 55.0) {
+        Ok(_) => {}
+        Err(e) => println!("Error: {}", e),
+    }
+
+    // invalid add
+    match uuid_registry.add("", 20, Sex::Male, Grade::First, 50.0) {
+        Ok(_) => {}
+        Err(e) => println!("Rejected: {}", e),
+    }
 
     println!("\n All UUID students ");
     uuid_registry.list_all();
@@ -62,18 +134,33 @@ fn main() {
     let faith_id = uuid_registry.students[1].id;
 
     println!("\n Update Basongo's name ");
-    uuid_registry.update_name(basongo_id, "Ochuko, Isaac Onodairo".to_string());
+    match uuid_registry.update_name(basongo_id, "Ochuko, Isaac Onodairo".to_string()) {
+        Ok(_) => {}
+        Err(e) => println!("Error: {}", e),
+    }
     uuid_registry.get_student_by_id(basongo_id);
 
     println!("\n Delete the first UUID student ");
-    uuid_registry.delete_student(basongo_id);
+    match uuid_registry.delete_student(basongo_id) {
+        Ok(_) => {}
+        Err(e) => println!("Error: {}", e),
+    }
 
     println!("\n Get UUID of a student");
     uuid_registry.get_student_by_id(faith_id);
 
-    println!("\n Update Faith's age to 92 ");
-    uuid_registry.update_age(faith_id, 92);
+    println!("\n Update Faith's age ");
+    match uuid_registry.update_age(faith_id, 92) {
+        Ok(_) => {}
+        Err(e) => println!("Error: {}", e),
+    }
     uuid_registry.get_student_by_id(faith_id);
+
+    // invalid age update
+    match uuid_registry.update_age(faith_id, 0) {
+        Ok(_) => {}
+        Err(e) => println!("Rejected: {}", e),
+    }
 
     uuid_registry.list_all();
 }

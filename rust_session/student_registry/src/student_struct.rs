@@ -12,20 +12,29 @@ pub struct Student {
 }
 
 impl Student {
-    pub fn new(id: u32, name: String, age: u8, sex: Sex, grade: Grade, score: f32) -> Student {
-        Student {
+    pub fn new(id: u32, name: String, age: u8, sex: Sex, grade: Grade, score: f32) -> Result<Student, String> {
+        if name.trim().is_empty() {
+            return Err("Name cannot be empty".to_string());
+        }
+        if age == 0 || age > 100 {
+            return Err(format!("Invalid age: {}", age));
+        }
+        if score < 0.0 || score > 100.0 {
+            return Err(format!("Score must be between 0 and 100, got {}", score));
+        }
+        Ok(Student {
             id,
-            name,
+            name: name.trim().to_string(),
             age,
             sex,
             grade,
             score,
-        }
+        })
     }
 }
 
 #[derive(Debug)]
-pub struct StudentUUID {
+pub struct StudentV2 {
     pub id: Uuid,
     pub name: String,
     pub age: u8,
@@ -34,16 +43,25 @@ pub struct StudentUUID {
     pub score: f32,
 }
 
-impl StudentUUID {
-    pub fn new(name: String, age: u8, sex: Sex, grade: Grade, score: f32) -> StudentUUID {
-        StudentUUID {
+impl StudentV2 {
+    pub fn new(name: String, age: u8, sex: Sex, grade: Grade, score: f32) -> Result<StudentV2, String> {
+        if name.trim().is_empty() {
+            return Err("Name cannot be empty".to_string());
+        }
+        if age == 0 || age > 100 {
+            return Err(format!("Invalid age: {}", age));
+        }
+        if score < 0.0 || score > 100.0 {
+            return Err(format!("Score must be between 0 and 100, got {}", score));
+        }
+        Ok(StudentV2 {
             id: Uuid::new_v4(),
-            name,
+            name: name.trim().to_string(),
             age,
             sex,
             grade,
             score,
-        }
+        })
     }
 }
 
