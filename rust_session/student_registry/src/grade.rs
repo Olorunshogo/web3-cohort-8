@@ -21,6 +21,7 @@ pub enum Sex {
     Female,
 }
 
+#[allow(dead_code)]
 impl Sex {
     pub fn to_str(&self) {
         match self {
